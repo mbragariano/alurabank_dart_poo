@@ -4,7 +4,7 @@ void main() {
 
   conta.saque(20);
 
-  print(conta.saldo);
+  print(conta.saque(200));
 }
 
 class ContaCorrente {
@@ -14,14 +14,21 @@ class ContaCorrente {
   double saldo;
   String titular;
 
-  void saque(double valor) {
+  bool saque(double valor) {
     var diferenca = saldo - valor;
 
-    if (diferenca < -100) {
-      print('Saldo insuficiente.');
-    } else {
+    if (diferenca > -100) {
       saldo = diferenca;
+      return true;
     }
+
+    print('Saldo insuficiente.');
+    return false;
+  }
+
+  double deposito(double valor) {
+    saldo += valor;
+    return saldo;
   }
 
 }
